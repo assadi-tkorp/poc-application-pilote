@@ -1,0 +1,81 @@
+{
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.customDictionaries": {},
+  "cSpell.ignorePaths": [
+    "package-lock.json",
+    "node_modules",
+    "vscode-extension",
+    ".git/objects",
+    ".vscode",
+    ".vscode-insiders",
+    "package.json"
+  ],
+  "cSpell.ignoreRegExpList": ["/import\\s+[^;]*;/"],
+  "cSpell.language": "fr,en",
+  "cSpell.languageSettings": [
+    {
+      "caseSensitive": false,
+      "languageId": "*",
+      "locale": "fr"
+    }
+  ],
+  "cSpell.words": [
+    "airmob",
+    "AIRMOB",
+    "Apks",
+    "CONCAT",
+    "datetime",
+    "dispo",
+    "draggables",
+    "equirectangular",
+    "firstname",
+    "gopro",
+    "GOTENBEG",
+    "gotenberg",
+    "Insta",
+    "insv",
+    "INSV",
+    "inversed",
+    "l'APK",
+    "lastname",
+    "Mailgun",
+    "monfilm",
+    "msisdn",
+    "namedetail",
+    "oauths",
+    "officedocument",
+    "openapi",
+    "openxmlformats",
+    "plyr",
+    "Qrcode",
+    "shortl",
+    "splited",
+    "spreadsheetml",
+    "swiper",
+    "Symfony",
+    "TIMESTAMPDIFF",
+    "Tkorp",
+    "toastify",
+    "uniqid",
+    "URLBACKEND",
+    "verif",
+    "wordprocessingml"
+  ],
+
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false
+}
