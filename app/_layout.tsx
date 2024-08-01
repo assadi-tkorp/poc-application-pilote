@@ -3,6 +3,10 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -26,12 +30,16 @@ export default function RootLayout() {
     return null;
   }
 
+  const queryClient = new QueryClient()
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <QueryClientProvider client={queryClient}>
       <Stack>
         <Stack.Screen name="index" options={{ title:"Accueil", headerShown: false }} />
 
-      </Stack>
+        </Stack>
+        </QueryClientProvider>
     </ThemeProvider>
   );
 }

@@ -18,7 +18,12 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "permissions": [
+          "android.permission.INTERNET",
+          "android.permission.WRITE_EXTERNAL_STORAGE"
+        ],
+        "versionCode": 1
       }
     },
     "web": {

@@ -1,0 +1,31 @@
+import { create } from "zustand";
+import { createSelectors } from "./helpers";
+import {
+  AppContentListType,
+  AppContentType,
+} from "@/interfaces/ApplicationContents";
+
+type UseApplicationContentStoreType = {
+  collections: AppContentListType;
+  selected: AppContentType | null;
+};
+const useAppContentStoreBase = create<UseApplicationContentStoreType>(
+  (set) => ({
+    collections: [],
+    selected: null,
+  })
+);
+
+export const useAppContentStore = createSelectors(useAppContentStoreBase);
+
+export const setAppCollection = (values: AppContentListType) => {
+  useAppContentStore.setState((state) => ({
+    ...state,
+    collections: values,
+    selected: values[0],
+  }));
+};
+
+export const setSelectedApp = (values?: AppContentType) => {
+  useAppContentStore.setState((state) => ({ ...state, selected: values }));
+};
