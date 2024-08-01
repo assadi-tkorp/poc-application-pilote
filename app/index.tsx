@@ -8,6 +8,7 @@ import ContentSection from '@/components/Home/ContentSection';
 import RightAside from '@/components/Home/RightAside';
 import BadgesMedia from '@/components/ui/Badges';
 import ApplicationContent from '@/components/Home/ApplicationSection';
+import RightAsideApplication from '@/components/Home/RightAsideApplication';
 
 
 
@@ -58,7 +59,8 @@ const Home = () => {
           </View>
            {/* setting section */}
           <View className="w-[25%] bg-white-500 h-full px-3 ">
-            <RightAside />
+            {/*         <RightAside /> */}
+            <RightAsideApplication />
          
           </View>
           
