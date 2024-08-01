@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Animated, {FadeIn, FadeInLeft, FadeInRight, FadeOut, FadeOutLeft}from 'react-native-reanimated'
+
 
 interface posterProps {
     description:string
@@ -7,7 +9,7 @@ interface posterProps {
 const MovieDescription = ({description}:posterProps) => {
   return (
     <View className="w-fit mx-auto">
-          <Text>{ description}</Text>
+          <Animated.Text  entering={FadeInLeft.delay(100)} exiting={FadeOutLeft} >{ description}</Animated.Text>
     </View>
   )
 }

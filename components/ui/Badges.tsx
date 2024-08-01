@@ -7,13 +7,14 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 interface BadgeProps {
     title: string
-    variants: variantsMediaType
+    variants: variantsMediaType,
+    onPress:(media:string)=>void
 
 }
-const BadgesMedia = ({ title, variants }: BadgeProps) => {
+const BadgesMedia = ({ title, variants,onPress }: BadgeProps) => {
     
     const handleClick = () => {
-        
+        onPress(variants)
     }
 
     const VARIANTS_COLORS = {
