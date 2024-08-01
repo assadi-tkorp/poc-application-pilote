@@ -1,3 +1,4 @@
+import { IP } from "@/constants/Networks";
 import {
   AppContentListType,
   AppContentType,
@@ -5,7 +6,7 @@ import {
 import { MockMovieListInterface } from "@/interfaces/MockMoviContent";
 
 function getRandomImage() {
-  return `http://192.168.0.195/mock/apkIcon.png`;
+  return `http://${IP}/mock/apkIcon.png`;
 }
 
 function getRandomPackageName(index: number): string {

@@ -8,11 +8,13 @@ import {
 type UseApplicationContentStoreType = {
   collections: AppContentListType;
   selected: AppContentType | null;
+  count: number;
 };
 const useAppContentStoreBase = create<UseApplicationContentStoreType>(
   (set) => ({
     collections: [],
     selected: null,
+    count: 0,
   })
 );
 
@@ -23,6 +25,7 @@ export const setAppCollection = (values: AppContentListType) => {
     ...state,
     collections: values,
     selected: values[0],
+    count: values.length,
   }));
 };
 

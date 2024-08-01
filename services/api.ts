@@ -1,8 +1,9 @@
+import { IP } from "@/constants/Networks";
 import { MockMovieListInterface } from "@/interfaces/MockMoviContent";
 
 export const fetchMockContent = async (signal?: AbortSignal) => {
   try {
-    const res = await fetch("http://192.168.0.195/mock/videoContent.json", {
+    const res = await fetch(`http://${IP}/mock/videoContent.json`, {
       method: "GET",
       signal,
     });
@@ -10,7 +11,7 @@ export const fetchMockContent = async (signal?: AbortSignal) => {
     if (res.ok) {
       return res.json();
     } else {
-      throw new Error("Failed to fetch mock content");
+      throw new Error("Failed to fetch");
     }
   } catch (error) {
     throw error;
@@ -18,7 +19,7 @@ export const fetchMockContent = async (signal?: AbortSignal) => {
 };
 export const fetchMockAppContent = async (signal?: AbortSignal) => {
   try {
-    const res = await fetch("http://192.168.0.195/mock/appContent.json", {
+    const res = await fetch(`http://${IP}/mock/appContent.json`, {
       method: "GET",
       signal,
     });
@@ -26,7 +27,23 @@ export const fetchMockAppContent = async (signal?: AbortSignal) => {
     if (res.ok) {
       return res.json();
     } else {
-      throw new Error("Failed to fetch mock content");
+      throw new Error("Failed to fetch");
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+export const fetchMockDeviceConnected = async (signal?: AbortSignal) => {
+  try {
+    const res = await fetch(`http://${IP}/mock/deviceConnected.json`, {
+      method: "GET",
+      signal,
+    });
+
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw new Error("Failed to fetch");
     }
   } catch (error) {
     throw error;

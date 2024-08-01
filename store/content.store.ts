@@ -8,10 +8,12 @@ import { createSelectors } from "./helpers";
 type UseContentStoreType = {
   collections: MockMovieListInterface;
   selected: MockMovieInterface | null;
+  count: number;
 };
 const useContentStoreBase = create<UseContentStoreType>((set) => ({
   collections: [],
   selected: null,
+  count: 0,
 }));
 
 export const useContentStore = createSelectors(useContentStoreBase);
@@ -25,6 +27,7 @@ export const setContentCollections = (values: MockMovieListInterface): void => {
     ...state,
     collections: values,
     selected: values[0],
+    count: values.length,
   }));
 };
 

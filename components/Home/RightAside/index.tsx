@@ -18,7 +18,7 @@ const RightAside = () => {
           
           </Animated.ScrollView>
           <View className="" >
-              <Button  title='Action' />
+              <Button  title='Diffuser' />
           </View>
     </View>
   )

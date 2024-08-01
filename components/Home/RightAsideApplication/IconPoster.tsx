@@ -3,7 +3,7 @@ import React from 'react'
 import Animated from 'react-native-reanimated'
 
 interface IconPosterProps  {
-    image:string
+    image?:string
 }
 const IconPoster = ({image}:IconPosterProps) => {
   return (
