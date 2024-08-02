@@ -3,7 +3,6 @@ import React from 'react'
 import Animated from 'react-native-reanimated';
 import { useQuery } from '@tanstack/react-query';
 import { fetchMockDeviceConnected } from '@/services/api';
-import DATA from '@/mock/DeviceContected.mock';
 import DeviceConnectedItem from './DeviceConnectedItem';
 import { setDeviceConnectedCollection, useDevicesConnectedStore } from '@/store/devicesConnected.store';
 import EmptyDeviceConnected from './EmptyDeviceConnected';
@@ -22,7 +21,7 @@ const DeviceConnectedSection = () => {
 
   }, [query.isFetching])
   
-  const TEXT_DEVICE = query.isFetchedAfterMount ? `Recuperation des appareils connecté au reseau` :  `Aucune appareil trouvé sous le reseau`
+  const TEXT_DEVICE = query.isFetching ? `Recuperation des appareils connecté au reseau` :  `Aucune appareil trouvé sous le reseau`
   return (
     <>
 
