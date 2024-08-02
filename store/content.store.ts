@@ -26,7 +26,6 @@ export const setContentCollections = (values: MockMovieListInterface): void => {
   useContentStore.setState((state) => ({
     ...state,
     collections: values,
-    selected: values[0],
     count: values.length,
   }));
 };

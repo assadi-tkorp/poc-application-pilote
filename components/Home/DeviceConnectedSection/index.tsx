@@ -5,20 +5,29 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchMockDeviceConnected } from '@/services/api';
 import DATA from '@/mock/DeviceContected.mock';
 import DeviceConnectedItem from './DeviceConnectedItem';
-import { useDevicesConnectedStore } from '@/store/devicesConnected.store';
+import { setDeviceConnectedCollection, useDevicesConnectedStore } from '@/store/devicesConnected.store';
+import EmptyDeviceConnected from './EmptyDeviceConnected';
 
 const DeviceConnectedSection = () => {
 
-  // const query = useQuery({queryKey:["deviceConnected"],queryFn:()=>fetchMockDeviceConnected(),refetchOnMount:"always"})
-  const deviceConnectedCollection = DATA
+   const query = useQuery({queryKey:["deviceConnected"],queryFn:()=>fetchMockDeviceConnected(),refetchOnMount:"always"})
+  const deviceConnectedCollection = useDevicesConnectedStore.use.collections()
   const deviceConnectedSelected = useDevicesConnectedStore.use.selected()
+  
+  React.useEffect(() => {
+    
+    if (query.data) { 
+      setDeviceConnectedCollection(query.data)
+    }
 
-
-
+  }, [query.isFetching])
+  
+  const TEXT_DEVICE = query.isFetchedAfterMount ? `Recuperation des appareils connecté au reseau` :  `Aucune appareil trouvé sous le reseau`
   return (
     <>
 
-      <Animated.FlatList 
+      {deviceConnectedCollection.length > 0 ?
+        <Animated.FlatList 
      horizontal={true}
      showsVerticalScrollIndicator={true}
      data={deviceConnectedCollection}
@@ -26,7 +35,10 @@ const DeviceConnectedSection = () => {
      keyExtractor={item => item.id} 
      className="mx-auto rounded"
       
-      />
+      /> :
+        <EmptyDeviceConnected  isLoading={query.isFetching} text={TEXT_DEVICE} />
+    
+    }
     </>
   )
 }

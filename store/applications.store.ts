@@ -24,7 +24,6 @@ export const setAppCollection = (values: AppContentListType) => {
   useAppContentStore.setState((state) => ({
     ...state,
     collections: values,
-    selected: values[0],
     count: values.length,
   }));
 };

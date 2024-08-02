@@ -19,7 +19,7 @@ const DeviceConnectedItem = ({data}:DeviceConnectedItemProps) => {
   
 
   const handleClick = () => {
-    if (deviceConnectedSelected.find((item) => item.target == data.target)) removeSelectedDeviceConnected([data.target])
+    if (deviceConnectedSelected.some((item) => item.target == data.target)) removeSelectedDeviceConnected([data.target])
     else setSelectedDeviceConnected(data)
   }
 
