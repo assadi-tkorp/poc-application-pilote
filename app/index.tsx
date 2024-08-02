@@ -10,6 +10,7 @@ import BadgesMedia from "@/components/ui/Badges";
 import ApplicationContent from "@/components/Home/ApplicationSection";
 import RightAsideApplication from "@/components/Home/RightAsideApplication";
 import { StatusBar } from "expo-status-bar";
+import DeviceConnectedSection from "@/components/Home/DeviceConnectedSection";
 
 const Home = () => {
   type mediaStateType = "video" | "application";
@@ -40,14 +41,10 @@ const Home = () => {
   return (
     <SafeAreaView className="h-screen bg-slate-900 justify-center ">
       <StatusBar style="light" />
-      <View className="mx-auto">
-        <Text>Appareil selectionné: </Text>
-      </View>
+     
       {/* Devices section */}
-      <View className="flex-row justify-center flex-wrap p-6 ">
-        <DevicesCards />
-        <DevicesCards />
-        <DevicesCards />
+      <View className="px-5">
+          <DeviceConnectedSection />
       </View>
       {/* Content section */}
       <View className="flex-1 p-5">

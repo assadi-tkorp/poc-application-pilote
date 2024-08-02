@@ -1,9 +1,11 @@
-export type typeDevice = "xr" | "tablet" | "unknown";
+export type typeDeviceType = "xr" | "tablet" | "unknown";
 
-export type DevicesConnectedInterface = {
+export type DevicesConnectedType = {
   id: string;
   androidId: string;
   target: string;
   model?: string;
-  typeDevice?: typeDevice;
+  typeDevice?: typeDeviceType;
 };
+
+export type DevicesConnectedListType = Array<DevicesConnectedType>;

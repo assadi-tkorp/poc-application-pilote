@@ -40,7 +40,7 @@ const ContentSection = () => {
         data={contentCollections}
         renderItem={({ item }) => <ItemVideos isSelected={selectedContent?.id == item.id} data={item} onSelected={handleSelectedItem} />}
         keyExtractor={item => item.id} extraData={selectedContent}
-        className="w-fit mx-auto h-max-[301px]"
+        className="w-fit mx-auto flex-1"
     
       />}
      </>
