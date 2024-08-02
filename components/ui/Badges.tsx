@@ -21,11 +21,13 @@ const BadgesMedia = ({ title, variants,onPress }: BadgeProps) => {
         video: {
             bgColor: "bg-yellow-200",
             textColor: "text-yellow-900",
+            border:"border-yellow-900"
         
         },
         application: {
             bgColor: "bg-cyan-200",
             textColor: "text-cyan-900",
+             border:"border-cyan-900"
         
          
         },
@@ -44,8 +46,9 @@ const BadgesMedia = ({ title, variants,onPress }: BadgeProps) => {
     
     
 
-    const CLASS_BADGE_PARENT = ["rounded","p-3", "min-w-[100px]", "flex-row", "items-center", "justify-center","mx-2","first-of-type:ml-0", "last-of-type:mr-0"]
+    const CLASS_BADGE_PARENT = ["rounded","p-3", "min-w-[100px]", "flex-row", "items-center", "justify-center","mx-2","first-of-type:ml-0", "last-of-type:mr-0","border"]
     CLASS_BADGE_PARENT.push(VARIANTS_COLORS[variants].bgColor)
+    CLASS_BADGE_PARENT.push(VARIANTS_COLORS[variants].border)
     const CLASS_BADGE_TEXT = ["font-bold", "text-yellow-900","flex-row", "items-center"]
     CLASS_BADGE_TEXT.push(VARIANTS_COLORS[variants].textColor)
 

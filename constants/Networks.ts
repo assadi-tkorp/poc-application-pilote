@@ -1,4 +1,4 @@
-export const IP = "10.192.5.9";
+export const IP = "192.168.0.195";
 
 export const MDM_API_URL = "http://localhost:8080";
 

@@ -9,6 +9,7 @@ import RightAside from "@/components/Home/RightAside";
 import BadgesMedia from "@/components/ui/Badges";
 import ApplicationContent from "@/components/Home/ApplicationSection";
 import RightAsideApplication from "@/components/Home/RightAsideApplication";
+import { StatusBar } from "expo-status-bar";
 
 const Home = () => {
   type mediaStateType = "video" | "application";
@@ -37,7 +38,8 @@ const Home = () => {
   }
 
   return (
-    <SafeAreaView className="h-screen bg-slate-300 justify-center ">
+    <SafeAreaView className="h-screen bg-slate-900 justify-center ">
+      <StatusBar style="light" />
       <View className="mx-auto">
         <Text>Appareil selectionné: </Text>
       </View>
@@ -50,7 +52,7 @@ const Home = () => {
       {/* Content section */}
       <View className="flex-1 p-5">
         <View className="flex-row  h-min-[100px] flex-1">
-          <View className="w-[75%] bg-slate-500 h-full">
+          <View className="w-[75%] h-full bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-100 shadow">
             <View className="flex-row justify-center my-3">
               <BadgesMedia title="Video" variants="video" onPress={handleClickBadge}  />
               <BadgesMedia title="Applications" variants="application" onPress={handleClickBadge}  />

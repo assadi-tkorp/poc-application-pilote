@@ -18,11 +18,11 @@ const ItemApp = ({ isSelected, data, onSelected }: ItemAppProps) => {
     "rounded",
     " bg-gray-100",
     "overflow-hidden",
-      "text-xs"
+      "text-xs","shadow","border","border-gray-300","shadow-slate-600"
 
   ];
   isSelected
-    ? ITEM_SELECTED.push("border-4 border-blue-500 shadow")
+    ? ITEM_SELECTED.push("rounded-xl border-4 border-blue-500")
     : ITEM_SELECTED;
 
   const handleClick = () => {

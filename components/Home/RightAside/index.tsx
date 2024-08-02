@@ -10,7 +10,7 @@ const RightAside = () => {
     const selectedContent = useContentStore.use.selected()
 
   return (
-      <View className="rounded bg-white shadow-xl flex-1 p-3">
+      <View className="rounded  shadow-xl flex-1 p-3 bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-300">
           <Poster image={selectedContent?.posterUrl} />
           <Animated.Text entering={FadeInLeft.delay(50)} exiting={FadeOutLeft}  className="font-bold text-center text-xl mt-2" >{ selectedContent?.title}</Animated.Text>
           <Animated.ScrollView className="h-[100px] my-3" >
