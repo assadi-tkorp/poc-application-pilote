@@ -43,9 +43,7 @@ export const setSelectedDeviceConnected = (value: DevicesConnectedType) => {
  * @param {Array<string>} targets tableau contenant les ip du device
  */
 export const removeSelectedDeviceConnected = (targets: Array<string>) => {
-  const currentCollection = structuredClone(
-    useDevicesConnectedStore.getState().collections
-  );
+  const currentCollection = [...useDevicesConnectedStore.getState().selected];
   const filteredCollection = currentCollection.filter(
     (item) => !targets.includes(item.target)
   );

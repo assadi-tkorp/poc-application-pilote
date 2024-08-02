@@ -37,7 +37,6 @@ export default function RootLayout() {
       <QueryClientProvider client={queryClient}>
       <Stack>
         <Stack.Screen name="index" options={{ title:"Accueil", headerShown: false }} />
-
         </Stack>
         </QueryClientProvider>
     </ThemeProvider>
