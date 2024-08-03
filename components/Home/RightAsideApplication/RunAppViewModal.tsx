@@ -11,6 +11,8 @@ import { useAppContentStore } from "@/store/applications.store";
 import Animated, { FadeInLeft, FadeInRight, FadeOutLeft } from "react-native-reanimated";
 import IconPoster from "./IconPoster";
 import { useDevicesConnectedStore } from "@/store/devicesConnected.store";
+import { sendRunPackage } from "@/services/PulseWebsocketCommand";
+import { pulseWebSocketInstance } from "@/services/instance";
 
 interface RunAppViewModal {
   setModalVisible: (value: boolean) => void;
@@ -24,6 +26,35 @@ const RunAppViewModal = ({ setModalVisible }: RunAppViewModal) => {
   const devicesConnected = useDevicesConnectedStore.use.collections()
   const devicesConnectedCount = useDevicesConnectedStore.use.count()
   const devicesConnectedSelected = useDevicesConnectedStore.use.selected()
+
+  const runSelectedPackage = () => {
+    const targets = [...devicesConnectedSelected].map(item => item.target)
+    const packageName = appSelected?.packageName
+      if(!packageName) return
+      for (const target of targets) {
+        sendRunPackage({packageName,target})
+    }
+  }
+
+  type pulseWebsocketResponseData = {
+    code:number|string,
+    data: any,
+    status:string
+  }
+
+  React.useEffect(() => {
+   
+    pulseWebSocketInstance.onmessage = (event) => {
+      console.log('message received')
+      if (event.data) {
+        const jsonData = JSON.parse(event.data)
+        console.log(jsonData)
+      }
+    }
+
+  },[])
+
+
 
   return (
     <View className="flex-1">
@@ -53,7 +84,7 @@ const RunAppViewModal = ({ setModalVisible }: RunAppViewModal) => {
       </View>
 
       <View className="h-[150]  flex-row items-center justify-center">
-        <Button title="Confirmer" onPress={closeModal} />
+        <Button title="Confirmer" onPress={runSelectedPackage} />
       </View>
     </View>
   );

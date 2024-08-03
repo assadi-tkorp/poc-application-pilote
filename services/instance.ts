@@ -1,6 +1,6 @@
 import { MDM_WEBSOCKET_URL } from "@/constants/Networks";
 
 /**
- * instance webSocket
+ * instance webSocket Pulse
  */
-export const ws = new WebSocket(MDM_WEBSOCKET_URL);
+export const pulseWebSocketInstance = new WebSocket(MDM_WEBSOCKET_URL);
