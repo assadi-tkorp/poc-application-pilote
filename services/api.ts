@@ -69,7 +69,6 @@ export const fetchApiMdm = async ({
     body: JSON.stringify(body),
     headers: req?.headers,
   });
-  res.json().then((res) => console.log(res));
 
   return res.json();
 };
