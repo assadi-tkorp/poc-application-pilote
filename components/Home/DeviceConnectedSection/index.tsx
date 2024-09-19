@@ -6,22 +6,59 @@ import { fetchMockDeviceConnected } from '@/services/api';
 import DeviceConnectedItem from './DeviceConnectedItem';
 import { setDeviceConnectedCollection, useDevicesConnectedStore } from '@/store/devicesConnected.store';
 import EmptyDeviceConnected from './EmptyDeviceConnected';
+import { getDeviceConnected } from '@/services/PulseApiEndpoint';
+import { EventPulseWebsocket, EventPulseWebsocketType, EventWebsocketType } from '@/interfaces/PulseWebsocketType';
+import { pulseWebSocketInstance } from '@/services/instance';
+import { generateListDevice } from './helper';
+import { MDM_WEBSOCKET_URL } from '@/constants/Networks';
+
 
 const DeviceConnectedSection = () => {
 
-   const query = useQuery({queryKey:["deviceConnected"],queryFn:()=>fetchMockDeviceConnected(),refetchOnMount:"always"})
+   const query = useQuery({queryKey:["deviceConnected"],queryFn:()=>getDeviceConnected(),refetchOnMount:"always"})
   const deviceConnectedCollection = useDevicesConnectedStore.use.collections()
   const deviceConnectedSelected = useDevicesConnectedStore.use.selected()
+
+
+  
   
   React.useEffect(() => {
+
+    const pulseWebSocketInstance = new WebSocket(MDM_WEBSOCKET_URL)
     
-    if (query.data) { 
-      setDeviceConnectedCollection(query.data)
+    //Instance websocket
+      pulseWebSocketInstance.onmessage = (event) => {
+      const jsonData : EventWebsocketType & EventPulseWebsocketType = event.data ? JSON.parse(event.data):null
+      const message = jsonData?.message
+      const value = JSON.parse(jsonData.value)
+      console.log('message >> ', message)
+      console.log("value >>", value)
+      if (message && message === "discoverDevices") {
+      
+            generateListDevice(value)
+      }
+      
     }
+
+    if (query.data) { 
+      generateListDevice(query.data)
+    } 
+
+    //Nettoyage
+    return () => {
+      //Fermeture connexion websocket
+      pulseWebSocketInstance.close();
+    } 
 
   }, [query.isFetching])
   
-  const TEXT_DEVICE = query.isFetching ? `Recuperation des appareils connecté au reseau` :  `Aucune appareil trouvé sous le reseau`
+
+
+  
+  
+  const TEXT_DEVICE = query.isFetching ? `Recuperation des appareils connecté au reseau` : !query.data && `Aucune appareil trouvé sous le reseau`
+
+  
   return (
     <>
 

@@ -12,7 +12,6 @@ import Animated, { FadeInLeft, FadeInRight, FadeOutLeft } from "react-native-rea
 import IconPoster from "./IconPoster";
 import { useDevicesConnectedStore } from "@/store/devicesConnected.store";
 import { sendRunPackage } from "@/services/PulseWebsocketCommand";
-import { pulseWebSocketInstance } from "@/services/instance";
 
 interface RunAppViewModal {
   setModalVisible: (value: boolean) => void;
@@ -32,7 +31,9 @@ const RunAppViewModal = ({ setModalVisible }: RunAppViewModal) => {
     const packageName = appSelected?.packageName
       if(!packageName) return
       for (const target of targets) {
-        sendRunPackage({packageName,target})
+         sendRunPackage({packageName,target})
+     
+        
     }
   }
 
@@ -42,17 +43,7 @@ const RunAppViewModal = ({ setModalVisible }: RunAppViewModal) => {
     status:string
   }
 
-  React.useEffect(() => {
-   
-    pulseWebSocketInstance.onmessage = (event) => {
-      console.log('message received')
-      if (event.data) {
-        const jsonData = JSON.parse(event.data)
-        console.log(jsonData)
-      }
-    }
 
-  },[])
 
 
 

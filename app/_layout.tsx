@@ -2,7 +2,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   QueryClient,
   QueryClientProvider,
@@ -10,6 +10,10 @@ import {
 
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { EventPulseWebsocketType, EventWebsocketType } from '@/interfaces/PulseWebsocketType';
+import { MDM_WEBSOCKET_URL } from '@/constants/Networks';
+import { generateListDevice } from '@/components/Home/DeviceConnectedSection/helper';
+import { pulseWebSocketInstance } from '@/services/instance';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -26,9 +30,13 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
+
+  
+  
   if (!loaded) {
     return null;
   }
+
 
   const queryClient = new QueryClient()
 
