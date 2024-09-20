@@ -1,4 +1,5 @@
 import { DevicesConnectedType } from "@/interfaces/DevicesConnected.interface";
+import { debug } from "@/lib/utils";
 import { setDeviceConnectedCollection } from "@/store/devicesConnected.store";
 import uuid from "react-native-uuid";
 type SnapshotDevice = DevicesConnectedType & {
@@ -24,7 +25,7 @@ export const generateCleanListeDevices = (devices: SnapshotDevice[]) => {
 };
 
 export const generateListDevice = (devices: SnapshotDevice[]) => {
-  console.log("device -> ", devices);
+  debug.log("device -> ", devices);
   const cleanDevices = generateCleanListeDevices(devices);
   setDeviceConnectedCollection(cleanDevices);
 };

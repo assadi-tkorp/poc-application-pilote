@@ -2,28 +2,34 @@ import { StyleSheet, Text, View, VirtualizedList } from 'react-native'
 import React from 'react'
 import Animated from 'react-native-reanimated';
 import { useQuery } from '@tanstack/react-query';
-import { fetchMockDeviceConnected } from '@/services/api';
 import DeviceConnectedItem from './DeviceConnectedItem';
-import { setDeviceConnectedCollection, useDevicesConnectedStore } from '@/store/devicesConnected.store';
+import {  useDevicesConnectedStore } from '@/store/devicesConnected.store';
 import EmptyDeviceConnected from './EmptyDeviceConnected';
 import { getDeviceConnected } from '@/services/PulseApiEndpoint';
-import { EventPulseWebsocket, EventPulseWebsocketType, EventWebsocketType } from '@/interfaces/PulseWebsocketType';
-import { pulseWebSocketInstance } from '@/services/instance';
+import { EventPulseWebsocketType, EventWebsocketType } from '@/interfaces/PulseWebsocketType';
 import { generateListDevice } from './helper';
 import { MDM_WEBSOCKET_URL } from '@/constants/Networks';
+import { BroadcastReceiver } from 'react-native-broadcast-receiver';
+import { debug } from '@/lib/utils';
 
 
 const DeviceConnectedSection = () => {
-
-   const query = useQuery({queryKey:["deviceConnected"],queryFn:()=>getDeviceConnected(),refetchOnMount:"always"})
+  const query = useQuery({queryKey:["deviceConnected"],queryFn:()=>getDeviceConnected(),refetchOnMount:"always"})
   const deviceConnectedCollection = useDevicesConnectedStore.use.collections()
-  const deviceConnectedSelected = useDevicesConnectedStore.use.selected()
 
 
-  
   
   React.useEffect(() => {
 
+    BroadcastReceiver.setIntentActionConfig([
+      { action: 'com.pulse.mdm.service.DEVICE_DISCOVERY_RESOLVED', datakey: 'discoverDevices' },
+    
+    ]);
+    
+
+    const sub = BroadcastReceiver.addEventListner((d) =>
+      debug.log('broadcast :>> ', d.data)
+    );
     const pulseWebSocketInstance = new WebSocket(MDM_WEBSOCKET_URL)
     
     //Instance websocket
@@ -31,8 +37,8 @@ const DeviceConnectedSection = () => {
       const jsonData : EventWebsocketType & EventPulseWebsocketType = event.data ? JSON.parse(event.data):null
       const message = jsonData?.message
       const value = JSON.parse(jsonData.value)
-      console.log('message >> ', message)
-      console.log("value >>", value)
+      debug.log('message websocket >> ', message)
+      debug.log("value >>", value)
       if (message && message === "discoverDevices") {
       
             generateListDevice(value)
@@ -46,6 +52,8 @@ const DeviceConnectedSection = () => {
 
     //Nettoyage
     return () => {
+      // remove broadcastListener
+      sub.remove();
       //Fermeture connexion websocket
       pulseWebSocketInstance.close();
     } 

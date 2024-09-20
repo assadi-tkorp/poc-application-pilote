@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Slider from '@react-native-community/slider';
 import { parseNumber } from './helper';
+import { debug } from '@/lib/utils';
 
 
 
@@ -11,7 +12,7 @@ const VolumeSection = () => {
 
     const handleEndSlider = (value:number) => {
         const newValue =parseNumber(value) 
-        console.log(`Slider value changed ${newValue}`)    
+        debug.log(`Slider value changed ${newValue}`)    
     }
 
     const handleChangeSlider = (value: number) => {
