@@ -5,10 +5,11 @@ import { fetchMockAppContent } from '@/services/api'
 import Animated from 'react-native-reanimated'
 import ItemApp from './ItemApp'
 import { setAppCollection, setSelectedApp, useAppContentStore } from '@/store/applications.store'
+import { getApplicationInstalled } from '@/services/PulseApiEndpoint'
 
 const ApplicationContent = () => {
 
-    const query = useQuery({ queryKey: ['movieCollection'], queryFn:()=> fetchMockAppContent() ,refetchOnMount:"always"})
+    const query = useQuery({ queryKey: ['movieCollection'], queryFn:()=> getApplicationInstalled() ,refetchOnMount:"always"})
     
     const AppCollections = useAppContentStore.use.collections()
     const selectedApp = useAppContentStore.use.selected()
