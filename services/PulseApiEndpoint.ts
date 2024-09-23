@@ -33,3 +33,20 @@ export const getApplicationInstalled = async () => {
     throw error;
   }
 };
+
+/**
+ * Retourne la liste des videos téléchargé
+ */
+export const getContentInstalled = async () => {
+  try {
+    const res: AxiosResponse = await pulseApiInstance.get(
+      "/videos360/installed"
+    );
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      throw error.response.data;
+    }
+    throw error;
+  }
+};

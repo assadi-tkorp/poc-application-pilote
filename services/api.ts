@@ -1,5 +1,6 @@
 import { IP } from "@/constants/Networks";
 import { MockMovieListInterface } from "@/interfaces/MockMoviContent";
+const BASE_URL = "http://localhost:8080";
 
 export const fetchMockContent = async (signal?: AbortSignal) => {
   try {
@@ -33,6 +34,7 @@ export const fetchMockAppContent = async (signal?: AbortSignal) => {
     throw error;
   }
 };
+
 export const fetchMockDeviceConnected = async (signal?: AbortSignal) => {
   try {
     const res = await fetch(`http://${IP}/mock/deviceConnected.json`, {
@@ -49,8 +51,6 @@ export const fetchMockDeviceConnected = async (signal?: AbortSignal) => {
     throw error;
   }
 };
-
-const BASE_URL = "http://localhost:8080";
 
 interface fetchApiInterface {
   endpoint: string;

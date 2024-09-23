@@ -2,15 +2,15 @@ import { StyleSheet, Text,  View } from 'react-native'
 import React from 'react'
 import Animated from 'react-native-reanimated';
 import ItemVideos from './ItemVideos';
-import { fetchMockContent } from '@/services/api';
 import { useQuery } from '@tanstack/react-query';
 import { setContentCollections, setSelectedContent, useContentStore } from '@/store/content.store';
+import { getContentInstalled } from '@/services/PulseApiEndpoint';
 
 const ContentSection = () => {
 
 
 
-  const query = useQuery({ queryKey: ['contentCollection'], queryFn:()=> fetchMockContent() ,refetchOnMount:"always"})
+  const query = useQuery({ queryKey: ['contentCollection'], queryFn:()=> getContentInstalled() ,refetchOnMount:"always"})
   const contentCollections = useContentStore.use.collections()
   const selectedContent = useContentStore.use.selected()
 
