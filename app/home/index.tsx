@@ -2,7 +2,6 @@ import { View} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
-import DeviceConnectedSection from "./_components/DeviceConnectedSection";
 import BadgesMedia from "@/components/ui/Badges";
 import Video360Lists from "./_components/MainContent/Video360";
 import ApplicationLists from "./_components/MainContent/Applications";
@@ -48,7 +47,7 @@ const Home = () => {
      
       {/* Devices section */}
       <View className="px-5">
-          <DeviceConnectedSection />
+   
       </View>
       {/* Content section */}
       <View className="flex-1 p-5">

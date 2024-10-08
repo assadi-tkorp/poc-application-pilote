@@ -22,9 +22,7 @@ export const getDeviceConnected = async () => {
 
 export const getApplicationInstalled = async () => {
   try {
-    const res: AxiosResponse = await pulseApiInstance.get(
-      "/packages/installed"
-    );
+    const res: AxiosResponse = await pulseApiInstance.get("/packages/installed");
     return res.data;
   } catch (error: any) {
     if (error.response) {
@@ -39,9 +37,7 @@ export const getApplicationInstalled = async () => {
  */
 export const getContentInstalled = async () => {
   try {
-    const res: AxiosResponse = await pulseApiInstance.get(
-      "/videos360/installed"
-    );
+    const res: AxiosResponse = await pulseApiInstance.get("/videos360/installed");
     return res.data;
   } catch (error: any) {
     if (error.response) {

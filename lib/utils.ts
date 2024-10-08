@@ -31,3 +31,7 @@ const config = {
 const log = logger.createLogger(config);
 //log.patchConsole();
 export const debug = new Debugger(console, !Config.isProd, `[DEBUG] `);
+
+export const wait = (delay: number) => {
+  return new Promise((resolve) => setTimeout(() => resolve("resolved !"), delay));
+};

@@ -1,12 +1,7 @@
+import { wait } from "@/lib/utils";
+
 const TYPE_DEVICE = ["xr", "tablet", "unknown"];
-const MODEL = [
-  "PICO 4 Entreprise",
-  "LENOVO X6",
-  "HTC Vive",
-  "HTC Vive Pro",
-  "HTC Vive Pro 2",
-  "PICO G2 4k",
-];
+const MODEL = ["PICO 4 Entreprise", "LENOVO X6", "HTC Vive", "HTC Vive Pro", "HTC Vive Pro 2", "PICO G2 4k"];
 
 const getRandomTypeDevice = () => {
   return TYPE_DEVICE[Math.floor(Math.random() * TYPE_DEVICE.length)];
@@ -45,9 +40,24 @@ const device = [
     model: "unknown",
     typeDevice: "unknown",
   },
+  {
+    id: "65d60793c39b30ce577ac5er4",
+    androidId: "58cff79d46118994",
+    target: "192.168.0.195",
+    model: "unknown",
+    typeDevice: "unknown",
+  },
+  {
+    id: "65d60793c39b30ce577ac5e22",
+    androidId: "58cff79d46118994",
+    target: "192.168.0.195",
+    model: "unknown",
+    typeDevice: "unknown",
+  },
 ];
 
 const DATA = device.map((v, i) => {
+  v.ip = `192.168.0.19${i}`;
   v.target = `192.168.0.19${i}`;
   v.model = getRandomModel();
   v.typeDevice = getRandomTypeDevice();
@@ -55,3 +65,10 @@ const DATA = device.map((v, i) => {
 });
 
 export default DATA;
+
+export const fetchMockDeviceConnected = async () => {
+  try {
+    await wait(3500);
+    return DATA;
+  } catch (error) {}
+};
