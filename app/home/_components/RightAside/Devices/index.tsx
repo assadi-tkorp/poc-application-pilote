@@ -17,7 +17,7 @@ const DevicesSpecifications = () => {
         <DevicesSettings />
       </View>
 
-      <View className="my-3">
+      <View className="mt-3">
         <Button
           title="Redemarrer"
           color={"hsl(0 84.2% 60.2%)"}
