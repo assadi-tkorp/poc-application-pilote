@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Slider from '@react-native-community/slider';
-import { parseNumber } from './helper';
+import { convertVolumeBase15, parseNumber } from './helper';
 import { debug } from '@/lib/utils';
 
 
@@ -11,8 +11,10 @@ const VolumeSection = () => {
   const [volume, setVolume] = React.useState<number>(50)
 
     const handleEndSlider = (value:number) => {
-        const newValue =parseNumber(value) 
-        debug.log(`Slider value changed ${newValue}`)    
+        const cleanValue =parseNumber(value) 
+      
+      const volume = convertVolumeBase15(cleanValue)
+      debug.log(`Slider value changed ${volume}`)  
     }
 
     const handleChangeSlider = (value: number) => {
