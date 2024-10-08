@@ -2,9 +2,13 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
 import Card from "@/components/ui/Cards";
-
-const DevicesInfo = () => {
-  const Selected = () => (
+import DeviceStorage from "./DeviceStorage";
+type DevicesInfo = {
+    mode:"single"|"multiple"
+}
+const DevicesInfo = ({ mode }: DevicesInfo) => {
+  
+  const SingleDevice= () => (
     <View className="mb-3">
       <Text className="font-bold">
         ID:{" "}
@@ -55,11 +59,12 @@ const DevicesInfo = () => {
         >
           15%
         </Animated.Text>
-      </Text>
+          </Text>
+          <DeviceStorage /> 
     </View>
   );
 
-  const Multiple = () => (
+  const MultipleDevices = () => (
     <Animated.View
       entering={FadeInLeft.delay(100)}
       exiting={FadeOutLeft}
@@ -70,8 +75,14 @@ const DevicesInfo = () => {
       </Card>
     </Animated.View>
   );
+    
+    const RenderModeInfoDevice = () => {
+        if (mode == "multiple") return <MultipleDevices />
+        return <SingleDevice /> 
+    }
 
-  return <Multiple />;
+
+  return  <RenderModeInfoDevice /> ;
 };
 
 export default DevicesInfo;

@@ -7,7 +7,7 @@ const DeviceStorage = () => {
 
   return (
     <View  >
-          <Text className="font-bold mb-1" >Espace de stockage:</Text>
+         
           <Text className="font-bold mb-1" >Interne total: <MutedText>50GB</MutedText></Text>
           <Text className="font-bold mb-1" >Interne restante: <MutedText>120GB</MutedText>  </Text>
           <Text className="font-bold mb-1" >Externe total: <MutedText> 120GB</MutedText> </Text>

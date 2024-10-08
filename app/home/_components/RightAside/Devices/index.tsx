@@ -13,8 +13,7 @@ const DevicesSpecifications = () => {
         <View className="w-32 h-32 p-4 rounded bg-gray-300 mx-auto shadow mb-3">
           <AndroidPlainWordMark className="text-slate-900" />
         </View>
-        <DevicesInfo />
-        {/*   <DeviceStorage /> */}
+        <DevicesInfo mode="single" />
         <DevicesSettings />
       </View>
 
