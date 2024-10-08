@@ -16,6 +16,7 @@ const ItemDevice = ({ data}: ItemDeviceProps) => {
   const CARD_CLASS = clsx(DEFAULT_CLASS, SELECTED_CLASS)
 
 
+
   
 
   const handleClick = () => {

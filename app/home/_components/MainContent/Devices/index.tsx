@@ -35,8 +35,6 @@ const DeviceLists = () => {
       generateListDevice(query.data);
     }
 
-
-    
     //Nettoyage
     return () => {
       //Fermeture connexion websocket

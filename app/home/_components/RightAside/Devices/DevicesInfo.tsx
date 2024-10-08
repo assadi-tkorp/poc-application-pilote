@@ -3,64 +3,75 @@ import React from "react";
 import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
 import Card from "@/components/ui/Cards";
 import DeviceStorage from "./DeviceStorage";
-type DevicesInfo = {
-    mode:"single"|"multiple"
-}
-const DevicesInfo = ({ mode }: DevicesInfo) => {
-  
-  const SingleDevice= () => (
+import { useDevicesConnectedStore } from "@/store/devicesConnected.store";
+import DeviceNoSelected from "./DeviceNoSelected";
+
+const DevicesInfo = () => {
+  const deviceConnectedSelected = useDevicesConnectedStore.use.selected();
+  const DEVICE_SELECTED = deviceConnectedSelected[0];
+  const DEVICE_SELECTED_COUNT = deviceConnectedSelected.length;
+
+  const SingleDevice = () => (
     <View className="mb-3">
       <Text className="font-bold">
         ID:{" "}
-        <Animated.Text
-          className="font-normal"
-          entering={FadeInLeft.delay(100)}
-          exiting={FadeOutLeft}
-        >
-          123456
-        </Animated.Text>
+        {DEVICE_SELECTED?.id && (
+          <Animated.Text
+            className="font-normal"
+            entering={FadeInLeft.delay(100)}
+            exiting={FadeOutLeft}
+          >
+            {DEVICE_SELECTED?.id}
+          </Animated.Text>
+        )}
       </Text>
       <Text className="font-bold">
         IP:{" "}
-        <Animated.Text
-          className="font-normal"
-          entering={FadeInLeft.delay(100)}
-          exiting={FadeOutLeft}
-        >
-          192.168.1.25
-        </Animated.Text>
+        {DEVICE_SELECTED?.target && (
+          <Animated.Text
+            className="font-normal"
+            entering={FadeInLeft.delay(150)}
+            exiting={FadeOutLeft}
+          >
+            {DEVICE_SELECTED?.target}
+          </Animated.Text>
+        )}
       </Text>
       <Text className="font-bold">
         AndroidID:{" "}
-        <Animated.Text
-          className="font-normal"
-          entering={FadeInLeft.delay(100)}
-          exiting={FadeOutLeft}
-        >
-          155
-        </Animated.Text>
+        {DEVICE_SELECTED?.androidId && (
+          <Animated.Text
+            className="font-normal"
+            entering={FadeInLeft.delay(200)}
+            exiting={FadeOutLeft}
+          >
+            {DEVICE_SELECTED?.androidId}
+          </Animated.Text>
+        )}
       </Text>
       <Text className="font-bold">
         Model:{" "}
-        <Animated.Text
-          className="font-normal"
-          entering={FadeInLeft.delay(100)}
-          exiting={FadeOutLeft}
-        >
-          155
-        </Animated.Text>
+        {DEVICE_SELECTED?.model && (
+          <Animated.Text
+            className="font-normal"
+            entering={FadeInLeft.delay(250)}
+            exiting={FadeOutLeft}
+          >
+            {DEVICE_SELECTED.model}
+          </Animated.Text>
+        )}
       </Text>
       <Text className="font-bold">
         Batterie:{" "}
         <Animated.Text
           className="font-normal"
-          entering={FadeInLeft.delay(100)}
+          entering={FadeInLeft.delay(300)}
           exiting={FadeOutLeft}
         >
           15%
         </Animated.Text>
-          </Text>
-          <DeviceStorage /> 
+      </Text>
+      <DeviceStorage />
     </View>
   );
 
@@ -71,18 +82,19 @@ const DevicesInfo = ({ mode }: DevicesInfo) => {
     >
       <Card className="bg-slate-600 flex justify-center items-center ">
         <Text className="font-bold text-white mb-3">Appareils sélectionnés</Text>
-        <Animated.Text className="font-bold text-xl text-white">5</Animated.Text>
+        <Animated.Text className="font-bold text-xl text-white">{DEVICE_SELECTED_COUNT}</Animated.Text>
       </Card>
     </Animated.View>
   );
-    
-    const RenderModeInfoDevice = () => {
-        if (mode == "multiple") return <MultipleDevices />
-        return <SingleDevice /> 
-    }
 
+  const RenderModeInfoDevice = () => {
+    if (DEVICE_SELECTED_COUNT === 1) return <SingleDevice />;
+    if (DEVICE_SELECTED_COUNT > 1) return <MultipleDevices />;
 
-  return  <RenderModeInfoDevice /> ;
+    return <DeviceNoSelected />;
+  };
+
+  return <RenderModeInfoDevice />;
 };
 
 export default DevicesInfo;
