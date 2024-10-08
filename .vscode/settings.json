@@ -35,6 +35,8 @@
   ],
   "cSpell.words": ["Tkorp", "toastify", "uniqid", "apk"],
 
+  "editor.formatOnSave": true,
   "prettier.tabWidth": 2,
-  "prettier.useTabs": false
+  "prettier.useTabs": false,
+  "prettier.printWidth": 180
 }

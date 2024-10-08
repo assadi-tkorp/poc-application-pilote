@@ -1,29 +1,31 @@
-import { AndroidPlainWordMark } from '@/components/svg/plain'
-import React from 'react'
-import { Text, View } from 'react-native'
-import Animated, { FadeInLeft, FadeOutLeft } from 'react-native-reanimated'
-import DevicesSettings from './DevicesSettings'
+import { AndroidPlainWordMark } from "@/components/svg/plain";
+import React from "react";
+import { Button, Text, View } from "react-native";
 
+import DevicesSettings from "./DevicesSettings";
+import DeviceStorage from "./DeviceStorage";
+import DevicesInfo from "./DevicesInfo";
 
-const DevicesInfo = () => {
-
-  
+const DevicesSpecifications = () => {
   return (
     <View className="rounded  shadow-xl flex-1 p-3 bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-300">
-      <View className="w-32 h-32 p-4 rounded bg-gray-300 mx-auto shadow mb-3">
-        <AndroidPlainWordMark className="text-slate-900" />
+      <View className="flex-1">
+        <View className="w-32 h-32 p-4 rounded bg-gray-300 mx-auto shadow mb-3">
+          <AndroidPlainWordMark className="text-slate-900" />
+        </View>
+        <DevicesInfo />
+        {/*   <DeviceStorage /> */}
+        <DevicesSettings />
       </View>
 
-      <View  className="mb-3"  >
-      <Text className="font-bold" >IP:   <Animated.Text className="font-normal" entering={FadeInLeft.delay(100)} exiting={FadeOutLeft} >155</Animated.Text></Text>
-      <Text className="font-bold">AndroidID:   <Animated.Text className="font-normal" entering={FadeInLeft.delay(100)} exiting={FadeOutLeft} >155</Animated.Text></Text>
-      <Text className="font-bold">Model:   <Animated.Text className="font-normal" entering={FadeInLeft.delay(100)} exiting={FadeOutLeft} >155</Animated.Text></Text>
-      <Text className="font-bold">Batterie:   <Animated.Text className="font-normal" entering={FadeInLeft.delay(100)} exiting={FadeOutLeft} >155</Animated.Text></Text>
- </View>
-      <DevicesSettings />
-      
-</View>
-  )
-}
+      <View className="my-3">
+        <Button
+          title="Redemarrer"
+          color={"hsl(0 84.2% 60.2%)"}
+        />
+      </View>
+    </View>
+  );
+};
 
-export default DevicesInfo
+export default DevicesSpecifications;
