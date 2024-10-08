@@ -21,10 +21,12 @@
         "backgroundColor": "#ffffff",
         "permissions": [
           "android.permission.INTERNET",
-          "android.permission.WRITE_EXTERNAL_STORAGE"
+          "android.permission.WRITE_EXTERNAL_STORAGE",
+          "android.permission.READ_EXTERNAL_STORAGE"
         ],
         "versionCode": 1
-      }
+      },
+      "package": "com.acerom488.apppilote"
     },
     "web": {
       "bundler": "metro",

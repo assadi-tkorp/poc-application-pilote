@@ -30,5 +30,4 @@ const config = {
 
 const log = logger.createLogger(config);
 //log.patchConsole();
-const time = new Date();
 export const debug = new Debugger(console, !Config.isProd, `[DEBUG] `);

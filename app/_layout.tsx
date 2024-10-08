@@ -12,7 +12,6 @@ import {
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { EventPulseWebsocketType, EventWebsocketType } from '@/interfaces/PulseWebsocketType';
 import { MDM_WEBSOCKET_URL } from '@/constants/Networks';
-import { generateListDevice } from '@/components/Home/DeviceConnectedSection/helper';
 import { pulseWebSocketInstance } from '@/services/instance';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -43,8 +42,8 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <QueryClientProvider client={queryClient}>
-      <Stack>
-          <Stack.Screen name="index" options={{ title: "Accueil", headerShown: false }} />
+      <Stack screenOptions={{  headerShown: false }}>
+          <Stack.Screen  name="home"  options={{ title: "Accueil", headerShown: false }} />
           <Stack.Screen name="test" options={{ title:"A propos", headerShown: true }} />
         </Stack>
         </QueryClientProvider>
