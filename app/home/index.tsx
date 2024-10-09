@@ -9,6 +9,7 @@ import DeviceLists from "./_components/MainContent/Devices";
 import Video360Info from "./_components/RightAside/Videos360";
 import ApplicationInfo from "./_components/RightAside/Applications";
 import DevicesInfo from "./_components/RightAside/Devices";
+import HeaderSection from "./_components/HeaderSection";
 
 
 
@@ -42,19 +43,15 @@ const Home = () => {
   }
 
   return (
-    <SafeAreaView className="h-screen bg-slate-900 justify-center ">
-      <StatusBar style="light" />
-     
-      {/* Devices section */}
-      <View className="px-5">
-   
-      </View>
-      {/* Content section */}
-      <View className="flex-1 p-5">
-        <View className="flex-row  h-min-[100px] flex-1">
-          <View className="w-[75%] h-full bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-100 shadow">
-            <View className="flex-row justify-center my-3">
-    
+
+  <SafeAreaView className="flex-1 bg-slate-900 justify-center p-5"  >
+    <StatusBar style="light" />
+    {/* Header section */}
+    <HeaderSection />
+    {/* Main section */}
+      <View className="flex-1 flex-row pt-1 gap-1">
+          <View className="w-[65vw] bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-100 shadow">
+            <View className="flex-row justify-center p-4">
               <BadgesMedia title="Video" variants="video" onPress={handleClickBadge}  />
               <BadgesMedia title="Applications" variants="application" onPress={handleClickBadge} />
               <BadgesMedia title="Appareils" variants="devices" onPress={handleClickBadge}  />
@@ -63,17 +60,18 @@ const Home = () => {
             {mediaType === "application" && <ApplicationLists />}
             {mediaType === "devices" && <DeviceLists />}
           </View>
-          {/* setting section */}
-          <View className="w-[25%] bg-white-500 h-full px-3 ">
+          {/* Right section */}
+           <View className="bg-white-500 flex-1">
             {mediaType === "video" && <Video360Info />}
             {mediaType === "application" && <ApplicationInfo />}
             {mediaType === "devices" && <DevicesInfo />}
-          </View>
+          </View> 
         </View>
-      </View>
+  </SafeAreaView>
  
-    </SafeAreaView>
-  );
+);
+    
+    
 };
 
 export default Home;

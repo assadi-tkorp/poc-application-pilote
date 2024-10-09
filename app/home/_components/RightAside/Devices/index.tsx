@@ -14,8 +14,8 @@ const DevicesSpecifications = () => {
 
 
   return (
-    <View className="rounded  shadow-xl flex-1 p-3 bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-300">
-      <View className="flex-1">
+    <View className="flex-1 rounded  shadow-xl  p-3 bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-300">
+      <View className="flex-1" >
         <View className="w-32 h-32 p-4 rounded bg-gray-300 mx-auto shadow mb-3">
           <AndroidPlainWordMark className="text-slate-900" />
         </View>

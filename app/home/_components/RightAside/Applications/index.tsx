@@ -20,7 +20,7 @@ const ApplicationInfo = () => {
   };
 
   return (
-    <View className="rounded  shadow-xl flex-1 p-3 bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-300">
+    <View className="flex-1  shadow-xl p-3 bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-300">
       <IconPoster image={selectedAppContent?.icon} />
       <Animated.Text
         entering={FadeInLeft.delay(80)}
