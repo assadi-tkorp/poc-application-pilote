@@ -14,7 +14,7 @@ const HeaderSection = () => {
    React.useEffect(() => {
 
      if (query.data) {
-        generateListDevice(query.data);facto composant
+        generateListDevice(query.data);
      } 
      
      return () => {
