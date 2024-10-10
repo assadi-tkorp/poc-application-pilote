@@ -41,6 +41,7 @@ const Video360Lists = () => {
         renderItem={({ item }) => <ItemVideos isSelected={selectedContent?.id == item.id} data={item} onSelected={handleSelectedItem} />}
         keyExtractor={item => item.id} extraData={selectedContent}
         className="w-fit mx-auto flex-1"
+        
     
       />}
      </>

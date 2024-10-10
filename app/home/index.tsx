@@ -10,6 +10,7 @@ import Video360Info from "./_components/RightAside/Videos360";
 import ApplicationInfo from "./_components/RightAside/Applications";
 import DevicesInfo from "./_components/RightAside/Devices";
 import HeaderSection from "./_components/HeaderSection";
+import useDiscoverDevices from "@/hooks/useDiscoverDevices";
 
 
 
@@ -17,26 +18,9 @@ const Home = () => {
   type mediaStateType = "video" | "application"|"devices";
   const [mediaType, setMediaType] = React.useState<mediaStateType>("video");
 
+    useDiscoverDevices()
 
-  const ws = new WebSocket("ws://localhost:10002");
-
-  const sendMessage = () => {
-    const message = {
-      type: "test",
-      route: "test",
-      target: "target",
-      body: "test",
-    };
-    ws.send(JSON.stringify(message));
-  };
-    
-/*   useEffect(() => {
-
-
-    ws.onmessage =(event => {
-      alert(JSON.stringify(event.data))
-    })
-  }, [])  */
+ 
 
   const handleClickBadge = (media:string) => {
     media && setMediaType(media)

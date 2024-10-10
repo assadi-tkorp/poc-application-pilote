@@ -10,9 +10,6 @@ import { useDevicesConnectedStore } from "@/store/devicesConnected.store";
 const DevicesSpecifications = () => {
 
 
-
-
-
   return (
     <View className="flex-1 rounded  shadow-xl  p-3 bg-gray-100 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50 border border-gray-300">
       <View className="flex-1" >

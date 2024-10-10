@@ -22,7 +22,21 @@ export const setDeviceConnectedCollection = (values: DevicesConnectedListType) =
     count: values.length,
   }));
 };
+/**
+ * Selection d'un appareils
+ * @param value
+ */
+export const setSelectOneDeviceConnected = (value: DevicesConnectedType) => {
+  useDevicesConnectedStore.setState((state) => ({
+    ...state,
+    selected: [value],
+  }));
+};
 
+/**
+ * Selection multiple d'appareil
+ * @param value
+ */
 export const setSelectedDeviceConnected = (value: DevicesConnectedType) => {
   useDevicesConnectedStore.setState((state) => ({
     ...state,
@@ -43,7 +57,7 @@ export const removeSelectedDeviceConnected = (targets: Array<string>) => {
   }));
 };
 
-export const removeAllSelectedDeviceConnected = (value: DevicesConnectedType) => {
+export const removeAllSelectedDeviceConnected = () => {
   useDevicesConnectedStore.setState((state) => ({
     ...state,
     selected: [],

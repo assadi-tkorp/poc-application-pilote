@@ -1,7 +1,9 @@
 import { Debugger } from "ts-debug";
-const Config = { isProd: false };
 import { logger, consoleTransport } from "react-native-logs";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
+const Config = { isProd: false };
 const config = {
   levels: {
     debug: 0,
@@ -35,3 +37,7 @@ export const debug = new Debugger(console, !Config.isProd, `[DEBUG] `);
 export const wait = (delay: number) => {
   return new Promise((resolve) => setTimeout(() => resolve("resolved !"), delay));
 };
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
