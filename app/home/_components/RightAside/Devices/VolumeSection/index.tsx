@@ -2,19 +2,26 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Slider from '@react-native-community/slider';
 import { convertVolumeBase15, parseNumber } from './helper';
-import { debug } from '@/lib/utils';
+import { debug, extractValueFromKey } from '@/lib/utils';
+import { sendChangeVolumeMultimedia } from '@/services/PulseWebsocketCommand';
+import { useDevicesConnectedStore } from '@/store/devicesConnected.store';
 
 
 
 const VolumeSection = () => {
-
+  const deviceConnectedSelected = useDevicesConnectedStore.use.selected();
   const [volume, setVolume] = React.useState<number>(50)
 
     const handleEndSlider = (value:number) => {
         const cleanValue =parseNumber(value) 
       
       const volume = convertVolumeBase15(cleanValue)
-      debug.log(`Slider value changed ${volume}`)  
+      const targetList = deviceConnectedSelected.map(v=>v.target)
+      sendChangeVolumeMultimedia({
+        targets: targetList,
+        level:volume
+      })
+
     }
 
     const handleChangeSlider = (value: number) => {

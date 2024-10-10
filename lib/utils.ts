@@ -41,3 +41,10 @@ export const wait = (delay: number) => {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export function extractValueFromKey(array: Array<any>, key: string): Array<any> | null {
+  if (array) {
+    return array.map((item) => item[key]);
+  }
+  return null;
+}

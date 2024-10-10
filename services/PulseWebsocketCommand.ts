@@ -1,7 +1,4 @@
-import {
-  sendChangeVolumeMultimediaArgs,
-  sendRunPackageArgs,
-} from "@/interfaces/PulseWebsocketType";
+import { sendChangeVolumeMultimediaArgs, sendRunPackageArgs } from "@/interfaces/PulseWebsocketType";
 import { pulseWebSocketInstance } from "./instance";
 
 /**
@@ -30,17 +27,18 @@ export const sendRunPackage = (args: sendRunPackageArgs) => {
 
 /**
  * Ajustement de volume multimedia
- * @param {sendChangeVolumeMultimediaArgs} args
+ *
  */
-export const sendChangeVolumeMultimedia = (
-  args: sendChangeVolumeMultimediaArgs
-) => {
+export const sendChangeVolumeMultimedia = (args: sendChangeVolumeMultimediaArgs) => {
   const { level, targets } = args;
-  const body = {
-    type: "POST",
-    route: `volume`,
-    target: targets,
-    body: JSON.stringify({ level }),
-  };
-  pulseWebSocketInstance.send(JSON.stringify(body));
+
+  for (const target of targets) {
+    const body = {
+      type: "POST",
+      route: `volume`,
+      target: target,
+      body: JSON.stringify({ level }),
+    };
+    pulseWebSocketInstance.send(JSON.stringify(body));
+  }
 };
