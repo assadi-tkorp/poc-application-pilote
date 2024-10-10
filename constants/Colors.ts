@@ -33,7 +33,7 @@ export const DEVICE_CARD_COLORS = {
   },
   selected: {
     background: ["bg-cyan-200", "border-cyan-500"],
-    text: ["text-cyan-900", "text-shadow"],
+    text: ["text-cyan-500", "text-shadow"],
     border: ["border-cyan-500"],
   },
 };

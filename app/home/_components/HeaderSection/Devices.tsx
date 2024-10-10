@@ -5,6 +5,7 @@ import { removeSelectedDeviceConnected, setSelectedDeviceConnected, useDevicesCo
 import clsx from "clsx";
 import { DEVICE_CARD_COLORS } from "@/constants/Colors";
 import { DeviceItem } from "@/components/ui/Cards/DeviceItem";
+import { DeviceItemLight } from "@/components/ui/Cards/DeviceItemLight";
 
 const Devices = () => {
 
@@ -24,7 +25,7 @@ const Devices = () => {
         horizontal={true}
         showsVerticalScrollIndicator={true}
         data={deviceConnectedCollection}
-        renderItem={({ item }) => <DeviceItem  device={item} onPress={handlePress} />}
+        renderItem={({ item }) => <DeviceItemLight  device={item} onPress={handlePress} />}
         keyExtractor={item => item.id}   
         className="max-w-[80vw]"
     

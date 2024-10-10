@@ -27,14 +27,14 @@ export type DeviceItemProps = {
   device: DevicesConnectedType;
   onPress:(device:DevicesConnectedType)=>void
 };
-export const DeviceItem = ({ device, onPress }: DeviceItemProps) => {
+export const DeviceItemLight = ({ device, onPress }: DeviceItemProps) => {
     const deviceConnectedSelected = useDevicesConnectedStore.use.selected();
-    const DEFAULT_CLASS =  DEVICE_CARD_COLORS.default.background
+    const DEFAULT_CLASS =  [...DEVICE_CARD_COLORS.default.background]
     const SELECTED_STYLE = [...DEVICE_CARD_COLORS.selected.background,...DEVICE_CARD_COLORS.selected.border]
     const SELECTED_CLASS = deviceConnectedSelected.some((item) => item.target == device.target) ? SELECTED_STYLE : []
     const CARD_CLASS = clsx(DEFAULT_CLASS, SELECTED_CLASS)
-    const TEXT_SELECTED_STYLE = [...DEVICE_CARD_COLORS.selected.text]
-    const TEXT_SELECTED_CLASS = deviceConnectedSelected.some((item) => item.target == device.target) ? TEXT_SELECTED_STYLE: []
+    const TEXT_SELECTED_STYLE = ["text-xs",...DEVICE_CARD_COLORS.selected.text]
+    const TEXT_SELECTED_CLASS = deviceConnectedSelected.some((item) => item.target == device.target) ? TEXT_SELECTED_STYLE: ["text-xs"]
   
   const handlePress = () => {
     onPress && device && onPress(device);
@@ -46,19 +46,10 @@ export const DeviceItem = ({ device, onPress }: DeviceItemProps) => {
       className={cn(CARD_CLASS)}
       onPress={handlePress}
     >
-      <TextSection
-        label="ID:"
-        value={device.id}
-        textClassName={TEXT_SELECTED_CLASS}
-      />
+
       <TextSection
         label="IP:"
         value={device.target}
-        textClassName={TEXT_SELECTED_CLASS}
-      />
-      <TextSection
-        label="Type:"
-        value={device.typeDevice}
         textClassName={TEXT_SELECTED_CLASS}
       />
       <TextSection
@@ -66,13 +57,20 @@ export const DeviceItem = ({ device, onPress }: DeviceItemProps) => {
         value={device.model}
         textClassName={TEXT_SELECTED_CLASS}
       />
+            <TextSection
+        label="Batterie:"
+        value={"76%"}
+        textClassName={TEXT_SELECTED_CLASS}
+      />
+      
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: 140,
-    margin: 4,
+  
+    marginLeft: 2,
+    marginRight: 2,
   },
 });
