@@ -11,6 +11,7 @@ import Card from "@/components/ui/Cards";
 import { MockMovieInterface } from "@/interfaces/MockMoviContent";
 import Animated from "react-native-reanimated";
 import * as FileSystem from 'expo-file-system';
+import { cn } from "@/lib/utils";
 
 type ItemVideoProps = {
   isSelected: boolean;
@@ -26,7 +27,7 @@ const ItemVideos = ({ isSelected, data, onSelected }: ItemVideoProps) => {
     "p-0 relative",
     "w-[200]",
     "min-h-[200]",
-    "rounded",
+    "rounded-xl",
     " bg-gray-100",
     "overflow-hidden",
     "text-xs",
@@ -43,10 +44,7 @@ const ItemVideos = ({ isSelected, data, onSelected }: ItemVideoProps) => {
 
     const fetchImage = async () => {
       const fileUri = `file://${data?.posterUrl}`
-      console.log(fileUri);
-      
       const fileInfo = await FileSystem.getInfoAsync(fileUri);
-      console.log(fileInfo);
       if (fileInfo.exists) {
         setImageUri(fileInfo.uri);
       }
@@ -62,15 +60,17 @@ const ItemVideos = ({ isSelected, data, onSelected }: ItemVideoProps) => {
 
   return (
     <TouchableOpacity onPress={handleClick}>
-      <Card className={ITEM_SELECTED.join(" ")}>
+      <Card className={cn(ITEM_SELECTED)}>
        { imageUri &&<Animated.Image
           source={{ uri: imageUri }}
           resizeMode="cover"
           style={styles.image}
+        
+          
         />}
-        <View className="w-full bg-white" style={styles.cardBody}>
-          <Text>{data?.title}</Text>
-        </View>
+      {/*   <View className="w-full" style={styles.cardBody}>
+          <Text className="font-bold" >{data?.title}</Text>
+        </View> */}
       </Card>
     </TouchableOpacity>
   );
@@ -82,12 +82,12 @@ const styles = StyleSheet.create({
   image: {
     height: 300,
   },
-
   cardBody: {
     position: "absolute",
     bottom: 0,
-    padding: 13,
+    padding: 8,
     right: 0,
+    minHeight:50,
     backgroundColor: "rgba(255,255,255,0.75)",
   },
 });

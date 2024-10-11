@@ -13,17 +13,17 @@ import HeaderSection from "./_components/HeaderSection";
 import useDiscoverDevices from "@/hooks/useDiscoverDevices";
 import { setMediaSelected, useGlobalStore } from "@/store/global.store";
 import { variantsMediaType } from "@/interfaces/themes";
+import useGetPermission from "@/hooks/useGetPermission";
 
 
 
 const Home = () => {
 
 
+  useGetPermission()
   const mediaType = useGlobalStore.use.mediaSelected()
+  useDiscoverDevices()
 
-    useDiscoverDevices()
-
- 
 
   const handleClickBadge = (media:variantsMediaType) => {
     media && setMediaSelected(media)

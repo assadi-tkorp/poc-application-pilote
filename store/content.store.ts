@@ -53,3 +53,7 @@ export const updateContentCollections = (values: MockMovieInterface): void => {
 export const setSelectedContent = (values?: MockMovieInterface) => {
   useContentStore.setState((state) => ({ ...state, selected: values }));
 };
+
+export const removeSelectedContent = () => {
+  useContentStore.setState((state) => ({ ...state, selected: null }));
+};

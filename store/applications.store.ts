@@ -26,3 +26,7 @@ export const setAppCollection = (values: AppContentListType) => {
 export const setSelectedApp = (values?: AppContentType) => {
   useAppContentStore.setState((state) => ({ ...state, selected: values }));
 };
+
+export const removeSelectedApp = () => {
+  useAppContentStore.setState((state) => ({ ...state, selected: null }));
+};

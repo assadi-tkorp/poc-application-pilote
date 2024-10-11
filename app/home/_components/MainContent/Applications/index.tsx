@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchMockAppContent } from '@/services/api'
 import Animated from 'react-native-reanimated'
 import ItemApp from './ItemApp'
-import { setAppCollection, setSelectedApp, useAppContentStore } from '@/store/applications.store'
+import { removeSelectedApp, setAppCollection, setSelectedApp, useAppContentStore } from '@/store/applications.store'
 import { getApplicationInstalled } from '@/services/PulseApiEndpoint'
 
 const ApplicationLists = () => {
@@ -22,6 +22,9 @@ const ApplicationLists = () => {
           query.data && setAppCollection(query.data)
         }
     
+      return () => {
+        removeSelectedApp()
+      }
     
     }, [query.isFetching])
     

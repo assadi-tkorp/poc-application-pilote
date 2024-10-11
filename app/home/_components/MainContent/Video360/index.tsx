@@ -3,8 +3,9 @@ import React from 'react'
 import Animated from 'react-native-reanimated';
 import ItemVideos from './ItemVideos';
 import { useQuery } from '@tanstack/react-query';
-import { setContentCollections, setSelectedContent, useContentStore } from '@/store/content.store';
+import { removeSelectedContent, setContentCollections, setSelectedContent, useContentStore } from '@/store/content.store';
 import { getContentInstalled } from '@/services/PulseApiEndpoint';
+
 
 const Video360Lists = () => {
 
@@ -15,10 +16,14 @@ const Video360Lists = () => {
   const selectedContent = useContentStore.use.selected()
 
   React.useEffect(() => {
+
     if (!query.isFetching) {
       query.data && setContentCollections(query.data)
     }
 
+    return () => {
+      removeSelectedContent()
+    }
 
   }, [query.isFetching])
   
