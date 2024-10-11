@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Animated from "react-native-reanimated";
-import { removeSelectedDeviceConnected, setSelectOneDeviceConnected, useDevicesConnectedStore } from "@/store/devicesConnected.store";
+import { removeAllSelectedDeviceConnected, removeSelectedDeviceConnected, setSelectOneDeviceConnected, useDevicesConnectedStore } from "@/store/devicesConnected.store";
 import { getDeviceConnected } from "@/services/PulseApiEndpoint";
 import { generateListDevice } from "./helper";
 
@@ -20,8 +20,14 @@ const DeviceLists = () => {
     if (!query.isFetching) {
       query.data && generateListDevice(query.data);
     }
+
+    return () => {
+      removeAllSelectedDeviceConnected()
+    }
  
   }, [query.isFetching]);
+
+
 
   const TEXT_DEVICE = query.isFetching ? `Recuperation des appareils connecté au reseau` : !query.data && `Aucune appareil trouvé sous le reseau`;
   const handlePress = (device) => {

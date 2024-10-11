@@ -1,17 +1,19 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import Animated from "react-native-reanimated";
-import { removeSelectedDeviceConnected, setSelectedDeviceConnected, useDevicesConnectedStore } from "@/store/devicesConnected.store";
-import clsx from "clsx";
-import { DEVICE_CARD_COLORS } from "@/constants/Colors";
-import { DeviceItem } from "@/components/ui/Cards/DeviceItem";
+import { removeAllSelectedDeviceConnected, removeSelectedDeviceConnected, setSelectedDeviceConnected, useDevicesConnectedStore } from "@/store/devicesConnected.store";
 import { DeviceItemLight } from "@/components/ui/Cards/DeviceItemLight";
 
 const Devices = () => {
 
   const deviceConnectedCollection = useDevicesConnectedStore.use.collections();
-
   const deviceConnectedSelected = useDevicesConnectedStore.use.selected()
+
+  React.useEffect(() => {
+     return () => {
+      removeAllSelectedDeviceConnected()
+    }
+  },[])
 
 
   const handlePress = (device) => {

@@ -11,19 +11,22 @@ import ApplicationInfo from "./_components/RightAside/Applications";
 import DevicesInfo from "./_components/RightAside/Devices";
 import HeaderSection from "./_components/HeaderSection";
 import useDiscoverDevices from "@/hooks/useDiscoverDevices";
+import { setMediaSelected, useGlobalStore } from "@/store/global.store";
+import { variantsMediaType } from "@/interfaces/themes";
 
 
 
 const Home = () => {
-  type mediaStateType = "video" | "application"|"devices";
-  const [mediaType, setMediaType] = React.useState<mediaStateType>("video");
+
+
+  const mediaType = useGlobalStore.use.mediaSelected()
 
     useDiscoverDevices()
 
  
 
-  const handleClickBadge = (media:string) => {
-    media && setMediaType(media)
+  const handleClickBadge = (media:variantsMediaType) => {
+    media && setMediaSelected(media)
   }
 
   return (
