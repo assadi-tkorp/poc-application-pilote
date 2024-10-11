@@ -14,19 +14,23 @@ import { pulseWebSocketInstance } from "./instance";
  * ```
  */
 export const sendRunPackage = (args: sendRunPackageArgs) => {
-  const { packageName, target } = args;
+  const { packageName, targets } = args;
 
-  const body = {
-    type: "POST",
-    route: `package/run`,
-    target: target,
-    body: JSON.stringify({ packageName }),
-  };
-  pulseWebSocketInstance.send(JSON.stringify(body));
+  for (const target of targets) {
+    const body = {
+      type: "POST",
+      route: `package/run`,
+      target: target,
+      body: JSON.stringify({ packageName }),
+    };
+    pulseWebSocketInstance.send(JSON.stringify(body));
+  }
 };
 
 /**
- * Ajustement de volume multimedia
+ * Ajustement du volume multimedia
+ * packageName:"com.google.android.youtube",
+ * targets:["xxx.xxx.xxx.xxx","xxx.xxx.xxx"]
  *
  */
 export const sendChangeVolumeMultimedia = (args: sendChangeVolumeMultimediaArgs) => {
@@ -38,6 +42,22 @@ export const sendChangeVolumeMultimedia = (args: sendChangeVolumeMultimediaArgs)
       route: `volume`,
       target: target,
       body: JSON.stringify({ level }),
+    };
+    pulseWebSocketInstance.send(JSON.stringify(body));
+  }
+};
+
+/**
+ * Redemarrage des appareils
+ * targets:["xxx.xxx.xxx.xxx","xxx.xxx.xxx"]
+ *
+ */
+export const sendRestartDevices = (targets: string[]) => {
+  for (const target of targets) {
+    const body = {
+      type: "GET",
+      route: `device/restart`,
+      target: target,
     };
     pulseWebSocketInstance.send(JSON.stringify(body));
   }

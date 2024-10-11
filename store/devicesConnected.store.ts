@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { createSelectors } from "./helpers";
+import { createSelectors } from "./helpers.store";
 import { DevicesConnectedListType, DevicesConnectedType } from "@/interfaces/DevicesConnected.interface";
 
 type UseDevicesConnectedStoreType = {

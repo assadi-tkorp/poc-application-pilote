@@ -1,9 +1,6 @@
-import {
-  MockMovieInterface,
-  MockMovieListInterface,
-} from "@/interfaces/MockMoviContent";
+import { MockMovieInterface, MockMovieListInterface } from "@/interfaces/MockMoviContent";
 import { create, createStore } from "zustand";
-import { createSelectors } from "./helpers";
+import { createSelectors } from "./helpers.store";
 
 type UseContentStoreType = {
   collections: MockMovieListInterface;

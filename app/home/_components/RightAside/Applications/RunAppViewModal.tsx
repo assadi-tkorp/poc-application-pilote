@@ -30,11 +30,7 @@ const RunAppViewModal = ({ setModalVisible }: RunAppViewModal) => {
     const targets = [...devicesConnectedSelected].map(item => item.target)
     const packageName = appSelected?.packageName
       if(!packageName) return
-      for (const target of targets) {
-         sendRunPackage({packageName,target})
-     
-        
-    }
+         sendRunPackage({packageName,targets})
   }
 
   type pulseWebsocketResponseData = {

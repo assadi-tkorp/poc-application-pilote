@@ -1,22 +1,17 @@
 import { create } from "zustand";
-import { createSelectors } from "./helpers";
-import {
-  AppContentListType,
-  AppContentType,
-} from "@/interfaces/ApplicationContents";
+import { createSelectors } from "./helpers.store";
+import { AppContentListType, AppContentType } from "@/interfaces/ApplicationContents";
 
 type UseApplicationContentStoreType = {
   collections: AppContentListType;
   selected: AppContentType | null;
   count: number;
 };
-const useAppContentStoreBase = create<UseApplicationContentStoreType>(
-  (set) => ({
-    collections: [],
-    selected: null,
-    count: 0,
-  })
-);
+const useAppContentStoreBase = create<UseApplicationContentStoreType>((set) => ({
+  collections: [],
+  selected: null,
+  count: 0,
+}));
 
 export const useAppContentStore = createSelectors(useAppContentStoreBase);
 

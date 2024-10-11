@@ -1,6 +1,6 @@
 export type sendRunPackageArgs = {
   packageName: string;
-  target: string;
+  targets: Array<String>;
 };
 
 export type sendChangeVolumeMultimediaArgs = {
