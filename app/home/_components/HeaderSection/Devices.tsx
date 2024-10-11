@@ -39,12 +39,3 @@ const Devices = () => {
 
 export default Devices;
 
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor:"#ffff",
-    height: 120,
-    width:250,
-    margin:4
-  }
-})
